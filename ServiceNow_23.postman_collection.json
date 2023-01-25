@@ -1,0 +1,390 @@
+{
+	"info": {
+		"_postman_id": "94658bef-e21b-47ad-a8ad-05c2c6172f89",
+		"name": "ServiceNow_23",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7426710"
+	},
+	"item": [
+		{
+			"name": "GetAllIncident",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"change_request\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dev139336.service-now.com/api/now/table/change_request?sysparm_limit=1",
+					"protocol": "https",
+					"host": [
+						"dev139336",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"change_request"
+					],
+					"query": [
+						{
+							"key": "sysparm_limit",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllIncidentWithQueryParm",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"change_request\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dev139336.service-now.com/api/now/table/change_request?sysparm_limit=10&sysparm_fields=sys_id,number,short_description",
+					"protocol": "https",
+					"host": [
+						"dev139336",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"change_request"
+					],
+					"query": [
+						{
+							"key": "sysparm_limit",
+							"value": "10"
+						},
+						{
+							"key": "sysparm_fields",
+							"value": "sys_id,number,short_description"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostAllIncident",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"PostALLIncident\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"short description\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"First Record\");\r",
+							"});\r",
+							"//Save Response in the test tab\r",
+							"var response=pm.response.json();\r",
+							"console.log(response.result.sys_id)\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"short_description\": \"First Record\",\r\n    \"description\": \"Create Postman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev139336.service-now.com/api/now/table/incident?sysparm_fields=sys_id,short_description,description",
+					"protocol": "https",
+					"host": [
+						"dev139336",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident"
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "sys_id,short_description,description"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostAllIncident-Response in XML",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"PostALLIncident\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"short description\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"short desc\");\r",
+							"});\r",
+							"//Save Response in the test tab\r",
+							"//var response=pm.response.json();\r",
+							"//var response=pm.response.json();\r",
+							"var response=xml2Json(responseBody);\r",
+							"var sys_id = response.response.result.sys_id;\r",
+							"console.log(sys_id);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<request>\r\n    <entry>\r\n        <short_description>short desc</short_description>\r\n    </entry>\r\n</request>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev139336.service-now.com/api/now/table/incident?sysparm_fields=sys_id,short_description,description",
+					"protocol": "https",
+					"host": [
+						"dev139336",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident"
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "sys_id,short_description,description"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateAllIncident",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"short_description\": \"Updated to Record\",\r\n    \"description\": \"Updated to Postman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev139336.service-now.com/api/now/table/incident/6290f7421b682510eb028774cc4bcb64",
+					"protocol": "https",
+					"host": [
+						"dev139336",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident",
+						"6290f7421b682510eb028774cc4bcb64"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteAllIncident",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Delete\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://dev139336.service-now.com/api/now/table/incident/37aa88da1ba82510eb028774cc4bcb83",
+					"protocol": "https",
+					"host": [
+						"dev139336",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident",
+						"37aa88da1ba82510eb028774cc4bcb83"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCHAllIncident",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Patch update\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"short_description\": \"short description\",\r\n    \"description\": \"Updated to Postman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev139336.service-now.com/api/now/table/incident/ca821daa1b2c6510eb028774cc4bcbff",
+					"protocol": "https",
+					"host": [
+						"dev139336",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident",
+						"ca821daa1b2c6510eb028774cc4bcbff"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "uBq*0aPHi1%D",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
