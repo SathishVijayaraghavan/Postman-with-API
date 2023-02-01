@@ -1,0 +1,116 @@
+{
+	"id": "1359102d-f890-49de-889e-9e4cbc032988",
+	"name": "Week2_Chaining",
+	"timestamp": "2023-01-31T11:00:57.640Z",
+	"collection_id": "7426710-4d347c18-2dce-424b-b133-43f2663eef83",
+	"folder_id": 0,
+	"environment_id": "7426710-e32acf31-945d-4431-90fe-6f3ea9cda711",
+	"totalPass": 6,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "52cf8d16-29d2-4439-baa2-b3cf9b670931",
+			"name": "PostAllIncident",
+			"time": 818,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"PostALLIncident": true,
+				"short description": true
+			},
+			"testPassFailCounts": {
+				"PostALLIncident": {
+					"pass": 2,
+					"fail": 0
+				},
+				"short description": {
+					"pass": 2,
+					"fail": 0
+				}
+			},
+			"times": [
+				836,
+				818
+			],
+			"allTests": [
+				{
+					"PostALLIncident": true,
+					"short description": true
+				},
+				{
+					"PostALLIncident": true,
+					"short description": true
+				}
+			]
+		},
+		{
+			"id": "085ff1be-f882-4b3d-8770-f1b0c9b48660",
+			"name": "UpdateAllIncident",
+			"time": 761,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				770,
+				761
+			],
+			"allTests": [
+				{},
+				{}
+			]
+		},
+		{
+			"id": "5911a37f-d311-440a-9672-cf953ab6d83e",
+			"name": "DeleteAllIncident",
+			"time": 658,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Delete": true
+			},
+			"testPassFailCounts": {
+				"Delete": {
+					"pass": 2,
+					"fail": 0
+				}
+			},
+			"times": [
+				907,
+				658
+			],
+			"allTests": [
+				{
+					"Delete": true
+				},
+				{
+					"Delete": true
+				}
+			]
+		}
+	],
+	"count": 2,
+	"totalTime": 4750,
+	"collection": {
+		"requests": [
+			{
+				"id": "52cf8d16-29d2-4439-baa2-b3cf9b670931",
+				"method": "POST"
+			},
+			{
+				"id": "085ff1be-f882-4b3d-8770-f1b0c9b48660",
+				"method": "PUT"
+			},
+			{
+				"id": "5911a37f-d311-440a-9672-cf953ab6d83e",
+				"method": "DELETE"
+			}
+		]
+	}
+}
