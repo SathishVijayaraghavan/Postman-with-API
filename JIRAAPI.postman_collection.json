@@ -1,0 +1,209 @@
+{
+	"info": {
+		"_postman_id": "5d234c42-07ad-4bec-b156-51f21cab6242",
+		"name": "JIRAAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7426710"
+	},
+	"item": [
+		{
+			"name": "JiraApi",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var resultID=pm.response.json();\r",
+							"var test=resultID.id;\r",
+							"pm.globals.set(\"ID\",test);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"project\": \r\n        {\r\n            \"key\": \"AP\"\r\n        },\r\n        \"summary\": \"create issue in Postman project\",\r\n        \"description\": \"Creating of an issue using project keys and issue type names using the Postman\",\r\n        \"issuetype\": {\r\n            \"name\": \"Bug\"\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://restapi23jan.atlassian.net/rest/api/2/issue/",
+					"protocol": "https",
+					"host": [
+						"restapi23jan",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JiraApi",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://restapi23jan.atlassian.net/rest/api/2/issue/{{ID}}",
+					"protocol": "https",
+					"host": [
+						"restapi23jan",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"{{ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JiraApi",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n\r\n        \"description\": \"Bug creation Using REST API for testing\"\r\n    }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://restapi23jan.atlassian.net/rest/api/2/issue/{{ID}}",
+					"protocol": "https",
+					"host": [
+						"restapi23jan",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"{{ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JiraApi",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"}); "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://restapi23jan.atlassian.net/rest/api/2/issue/{{ID}}",
+					"protocol": "https",
+					"host": [
+						"restapi23jan",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"{{ID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "ATATT3xFfGF0SAQnRoVpIZu_d27t7XeWbJ8lt-zSvJdhdB1DdYY_xRFGobx2YoC5p7jBeu832sOjghIiq-Fn4bvKyzwAYaCpPH9iz-mjB0Ck0-S5iGHWGE6ER3GRlDrMqXMk3wrJIO0buOBJ3vTR4uKD9VvsP36GMuZyiX9PjREzd3Zr7Ylb9qw=2EC972AF",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "sathishkumarvijayaraghavan@gmail.com",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
